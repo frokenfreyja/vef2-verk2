@@ -7,5 +7,6 @@ CREATE TABLE applications (
   presentation text,
   job text, 
   processed boolean default false,
-  created timestamp with time zone not null default current_timestamp
+  created timestamp with time zone not null default current_timestamp,
+  updated timestamp with time zone not null default current_timestamp
 );
