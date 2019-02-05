@@ -22,21 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* todo aðrar stillingar á express appi */
 
-/*
-app.get('/', (req, res) => {
-  res.send(`
-<form method="post" action="/post" enctype="application/x-www-form-urlencoded">
-  <input type="text" name="Name">
-  <input type="email" name="Email">
-  <button>Senda</button>
-</form>
-  `);
-});
-
-app.post('/post', (req, res) => {
-  res.send(`POST gögn: ${JSON.stringify(req.body)}`);
-});
-*/
 // hjálparfall fyrir view
 app.locals.isInvalid = (param, errors) => {
   if (!errors) {

@@ -1,3 +1,32 @@
 <%- include('header') -%>
 
+<h1 class="applications__title"> <%= title %> </h1>
+
+<%if (rows == 0) { %>
+  <p> Engar færslur </p>
+<% } %>
+
+<% rows.forEach((row) => { %>
+  <div class="row__item">
+    <div class="row__content">
+      <h2><%= row.name %></h2>
+      <a href="mailto:<%= row.email %>"><%= row.email %></a>
+      <p>Sími: <%= row.phone %></p>
+      <p>Umsókn send: <%= row.created %></p>
+      <p><%= row.presentation %></p>
+    </div>
+    <div class="row__buttons">
+      
+      <a href='/applications/process'>Vinna umsókn</a>
+
+      <a href='/applications/remove'>Eyða umsókn</a>
+
+    </div>
+  </div>
+  <br><br>
+
+<% }) %>
+
+
+
 <%- include('footer') -%>

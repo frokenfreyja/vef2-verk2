@@ -13,10 +13,20 @@ function catchErrors(fn) {
 async function data(req, res) {
   const rows = await fetchData();
 
-  return res.render('applications', { rows, title: 'Stjórnsíða' });
+  return res.render('applications', { rows, title: 'Atvinnuumsóknir' });
 }
 
-async function download(req, res) {
+async function process(req, res) {
+  const rows = await fetchData();
+
+  const header = 'date;name;email;phone;presentation;job;processed';
+  const body = rows.map(row => `${row.created};${row.name};${row.email};${row.phone};${row.presentation};${row.job};${row.processed}`).join('\n');
+
+  res.type('text/csv');
+  res.send([header, body].join('\n'));
+}
+
+async function remove(req, res) {
   const rows = await fetchData();
 
   const header = 'date;name;email;phone;presentation;job;processed';
@@ -27,6 +37,7 @@ async function download(req, res) {
 }
 
 router.get('/', data, catchErrors(data));
-router.get('/download', download, catchErrors(download));
+router.get('/process', process, catchErrors(process));
+router.get('/remove', remove, catchErrors(remove));
 
 module.exports = router;

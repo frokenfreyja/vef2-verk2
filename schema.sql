@@ -1,7 +1,7 @@
 CREATE TABLE applications (
   -- TODO schema fyrir töflu
   id serial primary key,
-  name varchar(64) not null unique,
+  name varchar(64) not null,
   email varchar(64) not null unique, 
   phone int,
   presentation text,
