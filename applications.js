@@ -1,14 +1,19 @@
 const express = require('express');
 
 const { fetchData } = require('./db');
+
 const router = express.Router();
 
 /* todo útfæra */
 
+function catchErrors(fn) {
+  return (req, res, next) => fn(req, res, next).catch(next);
+}
+
 async function data(req, res) {
   const rows = await fetchData();
 
-  return res.render('applications', { rows, showLogin: false, title: 'Stjórnsíða' });
+  return res.render('applications', { rows, title: 'Stjórnsíða' });
 }
 
 async function download(req, res) {
@@ -21,7 +26,7 @@ async function download(req, res) {
   res.send([header, body].join('\n'));
 }
 
-router.get('/', ensureLoggedIn, catchErrors(data));
-router.get('/download', ensureLoggedIn, catchErrors(download));
+router.get('/', data, catchErrors(data));
+router.get('/download', download, catchErrors(download));
 
 module.exports = router;

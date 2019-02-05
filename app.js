@@ -2,13 +2,21 @@ require('dotenv').config();
 
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
 
 const app = express();
+
+const apply = require('./apply');
+const applications = require('./applications');
+
+
+app.use(express.urlencoded({ extended: true }));
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -18,8 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.send(`
 <form method="post" action="/post" enctype="application/x-www-form-urlencoded">
-  <input type="text" name="data">
-  <input type="file" name="file">
+  <input type="text" name="Name">
+  <input type="email" name="Email">
   <button>Senda</button>
 </form>
   `);
@@ -29,6 +37,17 @@ app.post('/post', (req, res) => {
   res.send(`POST gögn: ${JSON.stringify(req.body)}`);
 });
 */
+// hjálparfall fyrir view
+app.locals.isInvalid = (param, errors) => {
+  if (!errors) {
+    return false;
+  }
+
+  return Boolean(errors.find(i => i.param === param));
+};
+
+app.use('/', apply);
+app.use('/applications', applications);
 
 
 function notFoundHandler(req, res, next) { // eslint-disable-line

@@ -1,0 +1,37 @@
+<%- include('header') -%>
+
+<h1 class="apply__title"> <%= title %> </h1>
+
+<form action="/" method="post" enctype="application/x-www-form-urlencoded">
+  <label for="name">Nafn</label>
+  <input required type="text" name="name" value="<%= data.name %>"><br>
+
+  <label for="email">Netfang</label>
+  <input type="email" name="email" value="<%= data.email %>"><br>
+
+  <label for="phone">Sími</label>
+  <input type="text" name="phone" value="<%= data.phone %>"><br>
+
+  <label for="presentation">Kynning á þér: </label>
+  <input type="text" name="presentation" value="<%= data.presentation %>"><br>
+
+  <label for="job">Starf sem sótt er um: </label><br>
+  <input type="radio" name="job" value="1">Forritari<br>
+  <input type="radio" name="job" value="2">Hönnuður<br>
+  <input type="radio" name="job" value="3">Verkefnastjóri<br>
+
+  <button>Senda umsókn</button>
+</form>
+
+<%if (errors && errors.length > 0) { %>
+  <ul class="validation">
+    <% errors.forEach((error) => { %>
+    <li class="validation__item">
+      <%= error.msg %>
+    </li>
+  <% }) %>
+  </ul>
+<% } %>
+
+
+<%- include('footer') -%>
