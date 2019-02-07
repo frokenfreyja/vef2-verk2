@@ -1,8 +1,8 @@
 <%- include('header') -%>
 
-<h1 class="list__title"> <%= title %> </h1>
+<div class="list">
 
-<div class="list__main">
+    <h1> <%= title %> </h1>
 <%if (rows == 0) { %>
   <p> Engar umsóknir </p>
 <% } %>
@@ -14,17 +14,22 @@
       <a href="mailto:<%= row.email %>"><%= row.email %></a>
       <p>Sími: <%= row.phone %></p>
       <p>Umsókn send: <%= row.created %></p>
-      <p><%= row.presentation %></p>
+      <p class="list__presentation"><%= row.presentation %></p>
     </div>
     <div class="buttons__row">
       <div class="button__col">
       <form method="post" action="/applications/process/<%= row.id %>">
-        <button>Vinna umsókn</button>
+        <% if(row.processed == false) { %>
+          <button class="button">Vinna umsókn</button>
+        <% } %>
+        <% if(row.processed == true) { %>
+          <p> ✓ Umsókn unnin <%= row.updated %> </p>
+        <% } %>
       </form>
       </div>
       <div class="button__col">
       <form method="post" action="/applications/remove/<%= row.id %>">
-        <button>Eyða umsókn</button>
+        <button class="button">Eyða umsókn</button>
       </form>
     </div>
     </div>

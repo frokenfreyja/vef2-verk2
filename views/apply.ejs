@@ -1,29 +1,68 @@
 <%- include('header') -%>
 
-<h1 class="apply__title"> <%= title %> </h1>
-
+<div class="alltForm">
+    <h1> <%= title %> </h1>
+<div class="form">
+<div class="tafla">
 <form action="/" method="post" enctype="application/x-www-form-urlencoded">
-  <label for="name">Nafn</label>
-  <input type="text" name="name" value="<%= data.name %>" class="<%= locals.isInvalid('name', errors) ?  'invalid' : '' %>"><br>
+  <table class="form__table">
+    <tr class="form__row">
+      <td class="form__label">Nafn</td>
+      <td class="form__input">
+          <input type="text" name="name" value="<%= data.name %>" class="<%= locals.isInvalid('name', errors) ?  'invalid__input' : '' %>">
+      </td>
+    </tr>
+    <tr class="form__row">
+      <td class="form__label">Netfang</td>
+      <td class="form__input">
+          <input type="text" name="email" value="<%= data.email %>" class="<%= locals.isInvalid('email', errors) ?  'invalid__input' : '' %>">
+      </td>
+    </tr>
+    <tr class="form__row">
+      <td class="form__label">Sími</td>
+      <td class="form__input">
+          <input type="text" name="phone" value="<%= data.phone %>" class="<%= locals.isInvalid('phone', errors) ?  'invalid__input' : '' %>">
+      </td>
+    </tr>
+    <tr class="form__row">
+      <td class="form__label">Kynning á þér:</td>
+      <td class="form__input">
+          <input type="text" name="presentation" value="<%= data.presentation %>" class="<%= locals.isInvalid('presentation', errors) ?  'invalid__input' : '' %>">
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+  <p class="form__h2" for="job">Starf sem sótt er um: </p>
+    <div class="<%= locals.isInvalid('job', errors) ?  'invalid__input' : '' %>">
+        <% if (data.job == 'forritari') { %>
+          <input class="radio__button" type="radio" name="job" value="forritari" checked>
+        <% } else { %>
+          <input class="radio__button" type="radio" name="job" value="forritari">
+        <% } %>
+    <label class="radio__label">Forritari</label>
+    </div>
+  <div class="<%= locals.isInvalid('job', errors) ?  'invalid__input' : '' %>">
+        <% if (data.job == 'hönnuður') { %>
+            <input class="radio__button" type="radio" name="job" value="hönnuður" checked>
+        <% } else { %>
+            <input class="radio__button" type="radio" name="job" value="hönnuður">
+        <% } %>
+      <label class="radio__label">Hönnuður</label>
+    </div>
+<div class="<%= locals.isInvalid('job', errors) ?  'invalid__input' : '' %>">
+      <% if (data.job == 'verkefnastjóri') { %>
+          <input class="radio__button" type="radio" name="job" value="verkefnastjóri" checked>
+      <% } else { %>
+          <input class="radio__button" type="radio" name="job" value="verkefnastjóri">
+      <% } %>
+    <label class="radio__label">Verkefnastjóri</label>
+  </div>
 
-  <label for="email">Netfang</label>
-  <input type="text" name="email" value="<%= data.email %>" class="<%= locals.isInvalid('email', errors) ?  'invalid' : '' %>"><br>
 
-  <label for="phone">Sími</label>
-  <input type="text" name="phone" value="<%= data.phone %>" class="<%= locals.isInvalid('phone', errors) ?  'invalid' : '' %>"><br>
-
-  <label for="presentation">Kynning á þér: </label>
-  <input type="text" name="presentation" value="<%= data.presentation %>" class="<%= locals.isInvalid('presentation', errors) ?  'invalid' : '' %>"><br>
-
-  <label for="job">Starf sem sótt er um: </label><br>
-  <input type="radio" name="job" value="forritari" class="<%= locals.isInvalid('job', errors) ?  'invalid' : '' %>">Forritari<br>
-  <input type="radio" name="job" value="hönnuður" class="<%= locals.isInvalid('job', errors) ?  'invalid' : '' %>">Hönnuður<br>
-  <input type="radio" name="job" value="verkefnastjóri" class="<%= locals.isInvalid('job', errors) ?  'invalid' : '' %>">Verkefnastjóri<br>
-
-  <button>Senda umsókn</button>
-</form>
-
+<div class="errors">
 <%if (errors && errors.length > 0) { %>
+  <p class="form__h2">Vandræði við að senda umsókn:</p>
   <ul class="validation">
     <% errors.forEach((error) => { %>
     <li class="validation__item">
@@ -32,6 +71,10 @@
   <% }) %>
   </ul>
 <% } %>
+</div>
+<button class="button">Senda umsókn</button>
+</form>
 
+</div>
 
 <%- include('footer') -%>
