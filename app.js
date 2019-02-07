@@ -17,17 +17,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static(path.join(__dirname, '/public')));
 
 /* todo aðrar stillingar á express appi */
 
-// hjálparfall fyrir view
+// Hjálparfall fyrir apply.js 
 app.locals.isInvalid = (param, errors) => {
   if (!errors) {
     return false;
   }
-
+  console.log(errors);
   return Boolean(errors.find(i => i.param === param));
 };
 

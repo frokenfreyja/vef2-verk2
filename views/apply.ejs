@@ -4,21 +4,21 @@
 
 <form action="/" method="post" enctype="application/x-www-form-urlencoded">
   <label for="name">Nafn</label>
-  <input required type="text" name="name" value="<%= data.name %>"><br>
+  <input type="text" name="name" value="<%= data.name %>" class="<%= locals.isInvalid('name', errors) ?  'invalid' : '' %>"><br>
 
   <label for="email">Netfang</label>
-  <input type="email" name="email" value="<%= data.email %>"><br>
+  <input type="text" name="email" value="<%= data.email %>" class="<%= locals.isInvalid('email', errors) ?  'invalid' : '' %>"><br>
 
   <label for="phone">Sími</label>
-  <input type="text" name="phone" value="<%= data.phone %>"><br>
+  <input type="text" name="phone" value="<%= data.phone %>" class="<%= locals.isInvalid('phone', errors) ?  'invalid' : '' %>"><br>
 
   <label for="presentation">Kynning á þér: </label>
-  <input type="text" name="presentation" value="<%= data.presentation %>"><br>
+  <input type="text" name="presentation" value="<%= data.presentation %>" class="<%= locals.isInvalid('presentation', errors) ?  'invalid' : '' %>"><br>
 
   <label for="job">Starf sem sótt er um: </label><br>
-  <input type="radio" name="job" value="1">Forritari<br>
-  <input type="radio" name="job" value="2">Hönnuður<br>
-  <input type="radio" name="job" value="3">Verkefnastjóri<br>
+  <input type="radio" name="job" value="forritari" class="<%= locals.isInvalid('job', errors) ?  'invalid' : '' %>">Forritari<br>
+  <input type="radio" name="job" value="hönnuður" class="<%= locals.isInvalid('job', errors) ?  'invalid' : '' %>">Hönnuður<br>
+  <input type="radio" name="job" value="verkefnastjóri" class="<%= locals.isInvalid('job', errors) ?  'invalid' : '' %>">Verkefnastjóri<br>
 
   <button>Senda umsókn</button>
 </form>

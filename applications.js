@@ -1,6 +1,8 @@
+const xss = require('xss');
 const express = require('express');
 
-const { fetchData } = require('./db');
+const { fetchData, removeFromDb, processApplication, updateTime } = require('./db');
+
 
 const router = express.Router();
 
@@ -16,28 +18,25 @@ async function data(req, res) {
   return res.render('applications', { rows, title: 'Atvinnuumsóknir' });
 }
 
+/* Uppfærum tímann þegar ýtt er á "Vinna umsókn" og breytum processed í true */
 async function process(req, res) {
-  const rows = await fetchData();
+  console.log(req.params.id);
+  await updateTime(req.params.id);
+  await processApplication(req.params.id);
 
-  const header = 'date;name;email;phone;presentation;job;processed';
-  const body = rows.map(row => `${row.created};${row.name};${row.email};${row.phone};${row.presentation};${row.job};${row.processed}`).join('\n');
-
-  res.type('text/csv');
-  res.send([header, body].join('\n'));
+  return res.redirect('/applications');
 }
 
+/* Eyða umsókn úr gagnagrunni */
 async function remove(req, res) {
-  const rows = await fetchData();
+  console.log(req.params.id);
+  await removeFromDb(req.params.id);
 
-  const header = 'date;name;email;phone;presentation;job;processed';
-  const body = rows.map(row => `${row.created};${row.name};${row.email};${row.phone};${row.presentation};${row.job};${row.processed}`).join('\n');
-
-  res.type('text/csv');
-  res.send([header, body].join('\n'));
+  return res.redirect('/applications');
 }
 
 router.get('/', data, catchErrors(data));
-router.get('/process', process, catchErrors(process));
-router.get('/remove', remove, catchErrors(remove));
+router.post('/process/:id', process, catchErrors(process));
+router.post('/remove/:id', remove, catchErrors(remove));
 
 module.exports = router;

@@ -1,32 +1,38 @@
 <%- include('header') -%>
 
-<h1 class="applications__title"> <%= title %> </h1>
+<h1 class="list__title"> <%= title %> </h1>
 
+<div class="list__main">
 <%if (rows == 0) { %>
-  <p> Engar færslur </p>
+  <p> Engar umsóknir </p>
 <% } %>
 
 <% rows.forEach((row) => { %>
-  <div class="row__item">
-    <div class="row__content">
+  <div class="list__item">
+    <div class="list__text">
       <h2><%= row.name %></h2>
       <a href="mailto:<%= row.email %>"><%= row.email %></a>
       <p>Sími: <%= row.phone %></p>
       <p>Umsókn send: <%= row.created %></p>
       <p><%= row.presentation %></p>
     </div>
-    <div class="row__buttons">
-      
-      <a href='/applications/process'>Vinna umsókn</a>
-
-      <a href='/applications/remove'>Eyða umsókn</a>
-
+    <div class="buttons__row">
+      <div class="button__col">
+      <form method="post" action="/applications/process/<%= row.id %>">
+        <button>Vinna umsókn</button>
+      </form>
+      </div>
+      <div class="button__col">
+      <form method="post" action="/applications/remove/<%= row.id %>">
+        <button>Eyða umsókn</button>
+      </form>
+    </div>
     </div>
   </div>
   <br><br>
 
 <% }) %>
 
-
+</div>
 
 <%- include('footer') -%>

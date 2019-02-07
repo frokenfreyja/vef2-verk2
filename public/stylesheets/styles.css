@@ -22,3 +22,7 @@ main {
 h1 {
   font-family: 'Source Sans Pro', sans-serif;
 }
+.invalid {
+  border-color: #c66;
+  background-color: #f99;
+}

@@ -7,7 +7,7 @@ function catchErrors(fn) {
 
 /* todo útfæra */
 const { check, validationResult } = require('express-validator/check');
-const { sanitize } = require('express-validator/filter'); 
+const { sanitize } = require('express-validator/filter');
 
 const { saveToDb } = require('./db');
 
@@ -27,16 +27,16 @@ const applyValidation = [
     .withMessage('Netfang verður að vera netfang'),
 
   check('phone')
-    .isLength({ min: 1, max: 7 }).withMessage('Símanúmer verður að vera sjö tölustafir'),
+    .isLength({ min: 7, max: 8 }).withMessage('Símanúmer verður að vera sjö tölustafir'),
   check('phone')
-    .matches(/^[1-9]{3}-?[0-9]{4}$/).withMessage('Símanúmer verður að vera símanúmer'),
+    .matches(/^[1-9]{3}[ -]?[0-9]{4}$/).withMessage('Símanúmer verður að vera símanúmer'),
 
   check('presentation').isLength({ min: 100 }).withMessage('Kynning verður að vera að minnsta kosti 100 stafir'),
 
   check('job').isLength({ min: 1 }).withMessage('Velja verður starf'),
 
   sanitize('name').trim(),
-  sanitize('phone').trim().toInt(),
+  sanitize('phone').trim(),
 
 ];
 

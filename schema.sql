@@ -3,7 +3,7 @@ CREATE TABLE applications (
   id serial primary key,
   name varchar(64) not null,
   email varchar(64) not null unique, 
-  phone int,
+  phone varchar(64),
   presentation text,
   job text, 
   processed boolean default false,
