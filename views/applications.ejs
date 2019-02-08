@@ -13,7 +13,7 @@
       <h2><%= row.name %></h2>
       <a href="mailto:<%= row.email %>"><%= row.email %></a>
       <p>Sími: <%= row.phone %></p>
-      <p>Umsókn send: <%= row.created %></p>
+      <p>Umsókn send: <%= row.created.toISOString() %></p>
     </div>
     <div class="col">
         <p class="presentation"><%= row.presentation %></p>
@@ -24,7 +24,7 @@
           <button class="button">Vinna umsókn</button>
         <% } %>
         <% if(row.processed == true) { %>
-          <p> ✓ Umsókn unnin <%= row.updated %> </p>
+          <p> ✓ Umsókn unnin <%= row.updated.toISOString() %> </p>
         <% } %>
       </form>
       <form method="post" action="/applications/remove/<%= row.id %>">
