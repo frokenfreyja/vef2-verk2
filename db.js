@@ -1,6 +1,6 @@
 const { Client } = require('pg');
 
-const connectionString = process.env.DATABASE_URL || 'postgres://:@localhost/freyja';// sótt úr env gegnum dotenv pakka
+const connectionString = process.env.DATABASE_URL;// sótt úr env gegnum dotenv pakka
 
 /* todo útfæra */
 
