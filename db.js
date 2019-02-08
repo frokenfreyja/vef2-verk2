@@ -27,7 +27,7 @@ async function processApplication(data) {
   await client.connect();
 
   try {
-    await client.query('UPDATE applications SET processed = TRUE WHERE id = '+data);
+    await client.query('UPDATE applications SET processed = TRUE WHERE id = ' + data); /* eslint-disable-line */
   } catch (err) {
     console.error('Error processing data');
     throw err;
@@ -41,7 +41,7 @@ async function updateTime(data) {
   await client.connect();
 
   try {
-    await client.query('UPDATE applications SET updated = current_timestamp WHERE id = '+data);
+    await client.query('UPDATE applications SET updated = current_timestamp WHERE id = ' + data); /* eslint-disable-line */
   } catch (err) {
     console.error('Error processing data');
     throw err;
@@ -56,23 +56,9 @@ async function removeFromDb(data) {
   await client.connect();
 
   try {
-    await client.query('DELETE FROM applications WHERE id = '+data);
+    await client.query('DELETE FROM applications WHERE id = ' + data); /* eslint-disable-line */
   } catch (err) {
     console.error('Error deleting data');
-    throw err;
-  } finally {
-    await client.end();
-  }
-}
-
-async function fetchPresentation() {
-  const client = new Client({ connectionString });
-  await client.connect();
-
-  try {
-    await client.query('SELECT presentation FROM applications WHERE id = '+data);
-  } catch (err) {
-    console.error('Error selecting form data');
     throw err;
   } finally {
     await client.end();
@@ -119,7 +105,6 @@ module.exports = {
   processApplication,
   updateTime,
   removeFromDb,
-  fetchPresentation,
   fetchData,
   runQuery,
 };

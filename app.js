@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const path = require('path');
 const express = require('express');
-const session = require('express-session');
 
 const app = express();
 
@@ -21,12 +20,11 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 /* todo aðrar stillingar á express appi */
 
-// Hjálparfall fyrir apply.js 
+// Hjálparfall fyrir apply.js
 app.locals.isInvalid = (param, errors) => {
   if (!errors) {
     return false;
   }
-  console.log(errors);
   return Boolean(errors.find(i => i.param === param));
 };
 

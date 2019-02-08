@@ -1,7 +1,6 @@
-const xss = require('xss');
 const express = require('express');
 
-const { fetchData, removeFromDb, processApplication, updateTime } = require('./db');
+const { fetchData, removeFromDb, processApplication, updateTime } = require('./db'); /* eslint-disable-line */
 
 
 const router = express.Router();
@@ -20,7 +19,6 @@ async function data(req, res) {
 
 /* Uppfærum tímann þegar ýtt er á "Vinna umsókn" og breytum processed í true */
 async function process(req, res) {
-  console.log(req.params.id);
   await updateTime(req.params.id);
   await processApplication(req.params.id);
 
@@ -29,7 +27,6 @@ async function process(req, res) {
 
 /* Eyða umsókn úr gagnagrunni */
 async function remove(req, res) {
-  console.log(req.params.id);
   await removeFromDb(req.params.id);
 
   return res.redirect('/applications');

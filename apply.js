@@ -9,7 +9,7 @@ function catchErrors(fn) {
 const { check, validationResult } = require('express-validator/check');
 const { sanitize } = require('express-validator/filter');
 
-const { saveToDb, fetchPresentation } = require('./db');
+const { saveToDb } = require('./db');
 
 const router = express.Router();
 
@@ -44,9 +44,7 @@ function apply(req, res) {
   const data = {};
   const validation = validationResult(req);
   const errors = validation.array();
-  const text = req.params.presentation;
-  console.log(text);
-  res.render('apply', { errors, data, text, title: 'Atvinnuumsókn' });
+  res.render('apply', { errors, data, title: 'Atvinnuumsókn' });
 }
 
 async function applyPost(req, res) {
@@ -74,8 +72,7 @@ async function applyPost(req, res) {
 
   if (!validation.isEmpty()) {
     const errors = validation.array();
-    const text = req.params.presentation;
-    return res.render('apply', { errors, data, text, title: 'Atvinnuumsókn' });
+    return res.render('apply', { errors, data, title: 'Atvinnuumsókn' }); /* eslint-disable-line */
   }
 
   await saveToDb(data);

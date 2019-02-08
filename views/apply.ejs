@@ -1,24 +1,24 @@
 <%- include('header') -%>
 
-<div class="content">
+<div class="main">
   <h1> <%= title %> </h1>
 
 <form action="/" method="post" enctype="application/x-www-form-urlencoded" class="row">
   <div class="form__col">
-    <label class="apply__label" for="name">Nafn</label>
+    <label class="input">Nafn</label>
     <input type="text" name="name" value="<%= data.name %>" class="<%= locals.isInvalid('name', errors) ?  'invalid__input' : 'valid__input' %>">
   </div>
   <div class="form__col">
-      <label class="apply__label" for="email">Netfang</label>
+      <label class="input">Netfang</label>
       <input type="text" name="email" value="<%= data.email %>" class="<%= locals.isInvalid('email', errors) ?  'invalid__input' : 'valid__input' %>">
     </div>
     <div class="form__col">
-        <label class="apply__label" for="phone">Sími</label>
+        <label class="input">Sími</label>
         <input type="text" name="phone" value="<%= data.phone %>" class="<%= locals.isInvalid('phone', errors) ?  'invalid__input' : 'valid__input' %>">
       </div>
 
       <div class="form__col">
-          <label class="apply__label" for="presentation">Kynning á þér:</label>
+          <label class="input">Kynning á þér:</label>
           <textarea rows="5" name="presentation" value="<%= data.presentation %>" class="<%= locals.isInvalid('presentation', errors) ?  'invalid__input' : 'valid__input' %>"></textarea>
         </div>
 
@@ -56,19 +56,19 @@
         </label>
     </div>
 
-<%if (errors && errors.length > 0) { %>
-  <h2 class="col">Vandræði við að senda umsókn:</h2>
-<% } %>
-  <ul class="col">
+    <%if (errors && errors.length > 0) { %>
+        <h2 class="col">Vandræði við að senda umsókn:</h2>
+    <% } %>
+        <ul class="col">
     <% errors.forEach((error) => { %>
-    <li><%= error.msg %></li>
-  <% }) %>
-  </ul>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
 
-  <div class="col">
-<button>Senda umsókn</button>
-</div>
-</form>
+    <div class="col">
+      <button>Senda umsókn</button>
+    </div>
+  </form>
 </div>
 
 <%- include('footer') -%>

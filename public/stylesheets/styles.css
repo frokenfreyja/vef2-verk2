@@ -39,12 +39,12 @@ textarea, input, p, button {
   font-size: 1rem;
 }
 
-.content {
+.main {
   max-width: 1200px;
   margin: 0 auto; 
 }
 @media (max-width: 1199px) {
-  .content {
+  .main {
     padding-right: 20px;
     padding-left: 20px; 
   } 
@@ -72,7 +72,7 @@ textarea {
   border-width: 1px;
 }
 
-.button__content, .col,.form__col {
+.col,.form__col {
   padding-top: 24px;
   display: flex; 
   flex-direction: column;
@@ -126,10 +126,9 @@ button:hover {
     flex-direction: initial;
     min-width: 100%;
   }
-  .apply__label{
+  .input{
     min-width: 20%;
   }
-
   .invalid__input {
     width: 120%;
     padding: 10px 20px 10px 20px;
