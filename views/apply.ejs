@@ -18,8 +18,8 @@
       </div>
 
       <div class="form__col">
-          <label class="input">Kynning á þér:</label>
-          <textarea rows="5" name="presentation" value="<%= data.presentation %>" class="<%= locals.isInvalid('presentation', errors) ?  'invalid__input' : 'valid__input' %>"></textarea>
+          <label class="input" for="presentation">Kynning á þér:</label>
+          <textarea rows="5" id="presentation" name="presentation" class="<%= locals.isInvalid('presentation', errors) ?  'invalid__input' : 'valid__input' %>"><%= data.presentation %></textarea>
         </div>
 
     <div class="col">
