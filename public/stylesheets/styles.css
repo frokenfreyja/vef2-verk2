@@ -98,12 +98,12 @@ button {
   border-radius: 3px;
   border-style: solid;
   background-color: white;
-  width: 180px;
-  margin-top: 24px;
+  width: 140px;
 }
 button:hover {
   background-color: #bbb;
   transition: background-color 300ms ease-in-out;
+  border-color: #bbb;
   cursor: pointer;
 }
 
