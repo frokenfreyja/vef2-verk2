@@ -65,6 +65,20 @@ async function removeFromDb(data) {
   }
 }
 
+async function fetchPresentation() {
+  const client = new Client({ connectionString });
+  await client.connect();
+
+  try {
+    await client.query('SELECT presentation FROM applications WHERE id = '+data);
+  } catch (err) {
+    console.error('Error selecting form data');
+    throw err;
+  } finally {
+    await client.end();
+  }
+}
+
 async function fetchData() {
   const client = new Client({ connectionString });
   await client.connect();
@@ -105,6 +119,7 @@ module.exports = {
   processApplication,
   updateTime,
   removeFromDb,
+  fetchPresentation,
   fetchData,
   runQuery,
 };
